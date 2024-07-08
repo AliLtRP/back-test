@@ -1,0 +1,41 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Locations {
+  location_id Int       @id @default(autoincrement())
+  city_name   String
+  sensors     Sensors[]
+}
+
+model Sensors {
+  id                Int              @id @default(autoincrement())
+  sensor_type       String
+  last_reading_time DateTime?
+  location_id       Int
+  location          Locations        @relation(fields: [location_id], references: [location_id])
+  readings          ReadingSensors[]
+}
+
+model ReadingSensors {
+  id                Int      @id @default(autoincrement())
+  sensor_id         Int
+  timestamp         DateTime @default(now())
+  temperature       Float?
+  humidity          Float?
+  concentration     Float?
+  co                Float?
+  Alcohol           Float?
+  CO2               Float?
+  Toluen            Float?
+  NH4               Float?
+  Aceton            Float?
+  particle_level    Float?
+  air_quality_label String?
+  sensor            Sensors   @relation(fields: [sensor_id], references: [id])
+}
