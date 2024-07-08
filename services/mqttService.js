@@ -7,9 +7,7 @@ const prisma = new PrismaClient();
 const dotenv = require('dotenv').config();
 
 const port = 1883;
-const hostUrl = process.env.IP;
-const url = new URL(hostUrl);
-const host = url.hostname;
+const host = process.env.IP;
 
 ws.createServer({ server: httpServer }, aedes.handle);
 
