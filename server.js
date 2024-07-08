@@ -15,7 +15,7 @@ const cors = require('cors');
 app.use(
     cors({
         credentials: true,
-        origin: ["http://localhost:5173"],
+        origin: ["*"],
         exposedHeaders: ["Authorization"],
     })
 );

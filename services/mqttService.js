@@ -6,7 +6,7 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const dotenv = require('dotenv').config();
 
-const port = 1880;
+const port = 1883;
 const host = process.env.IP;
 
 ws.createServer({ server: httpServer }, aedes.handle);
