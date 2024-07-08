@@ -7,7 +7,9 @@ const prisma = new PrismaClient();
 const dotenv = require('dotenv').config();
 
 const port = 1883;
-const host = process.env.IP;
+const hostUrl = process.env.IP;
+const url = new URL(hostUrl);
+const host = url.hostname;
 
 ws.createServer({ server: httpServer }, aedes.handle);
 
@@ -45,8 +47,6 @@ aedes.on('publish', function (packet, client) {
             temperature: payload.temp,
             CO2: payload.CO2 || null,
             particle_level: payload.PM1 || null,
-
-
             concentration: payload.concentration || null,
             co: payload.CO || null,
             Alcohol: payload.Alcohol || null,
@@ -94,6 +94,5 @@ aedes.on('publish', function (packet, client) {
 server.listen(port, host, function () {
     console.log(`Aedes MQTT broker listening on ${host}:${port}`);
 });
-
 
 module.exports = server;
