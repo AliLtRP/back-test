@@ -4,8 +4,8 @@ const sensor = require('./routes/sensor');
 const sensorReading = require('./routes/sensorReading');
 const app = express();
 const PORT = process.env.PORT || 3000;
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
+// const { PrismaClient } = require('@prisma/client');
+// const prisma = new PrismaClient();
 const dotenv = require('dotenv').config();
 const mqttServer = require('./services/mqttService');
 const ws = require('./services/socketService')
@@ -24,30 +24,30 @@ app.use(express.json());
 
 
 // Check database connection
-async function main() {
-    try {
-        await prisma.$connect();
-        console.log('Connected to database');
-    } catch (error) {
-        console.error('Database connection error:', error);
-    }
-}
+// async function main() {
+//     try {
+//         await prisma.$connect();
+//         console.log('Connected to database');
+//     } catch (error) {
+//         console.error('Database connection error:', error);
+//     }
+// }
 
-main().catch((error) => {
-    console.error('Error starting application:', error);
-});
+// main().catch((error) => {
+//     console.error('Error starting application:', error);
+// });
 
 
 // Routes
-app.use('/api', location);
-app.use('/api', sensor);
-app.use('/api', sensorReading);
+// app.use('/api', location);
+// app.use('/api', sensor);
+// app.use('/api', sensorReading);
 
-app.use('/', (req, res) => {
-    res.send('Hello world!');
-});
+// app.use('/', (req, res) => {
+//     res.send('Hello world!');
+// });
 
 // Start server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Server is running on http://localhost:${PORT}`);
+// });
